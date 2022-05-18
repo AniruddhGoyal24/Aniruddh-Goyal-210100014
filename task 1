@@ -1,0 +1,40 @@
+myfile = open("C:\Users\aniru\Downloads/schedule.txt","r")
+
+
+listall = myfile.readlines()
+list_final = []
+for i in listall:
+    list_final.append(i.split(" "))
+
+time_duration_dict = {}
+# print(list_final)
+for i in list_final:
+    time_duration_dict[i[1]] = int(i[2])
+    # print(i)
+
+time_list_sorted = sorted(time_duration_dict.keys())
+time_duration_dict_sorted = {}
+x = 0
+attended_sessions = 0
+clock = int(time_list_sorted[x])
+time_duration_dict_sorted = {}
+# print(time_duration_dict)
+# print(time_list_sorted)
+attended = 0
+clock = int(time_list_sorted[0])
+for i in time_list_sorted:
+    if(int(i) >= clock):
+        temp_list = []
+        for j in time_duration_dict:
+            if(j == i):
+                temp_list.append(time_duration_dict[j])
+        if(temp_list != []):
+            min_duration = sorted(temp_list)[0]
+            clock += min_duration
+            attended += 1
+    else: 
+        pass
+
+print(attended)       
+
+
